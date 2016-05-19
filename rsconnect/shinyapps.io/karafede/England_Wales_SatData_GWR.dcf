@@ -1,0 +1,8 @@
+name: England_Wales_SatData_GWR
+account: karafede
+server: shinyapps.io
+bundleId: 456486
+url: https://karafede.shinyapps.io/England_Wales_SatData_GWR/
+when: 1463663739.0524
+asMultiple: FALSE
+asStatic: FALSE
