@@ -33,10 +33,15 @@ PM25_cmaq_tif <- raster::raster("PM25_cmaq_1km.tif")
 shinyServer(function(input, output) {
   
   finalMap <- reactive({
+  
     # Local authorites joined data
     PM25_OGR <- input$variable_OGR
     variable <- input$variable_OGR
 
+    withProgress(message = "processing.....",  detail = 'this may take a while...', value = 0.25, { background= "yellow"  
+    # Number of times we'll go through the loop
+    for(i in 1:2) {
+    
      qpal <- colorQuantile("Reds", PM25_sat@data$PM25_OGR, n = 7)
 
      pal_OGR <- colorNumeric(
@@ -101,6 +106,17 @@ shinyServer(function(input, output) {
       
     }
     
+    
+    # Increment the progress bar, and update the detail text.
+    setProgress(message = 'message = "processing.....',
+                detail = 'this may take a while...',
+                value=i)
+    print(i)
+    Sys.sleep(0.1)
+    # Pause for 0.5 seconds to simulate a long computation.
+    }
+    
+    })
 
     # Return
     map
